@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<title>UK Festivals</title>
+
+<!--Set up the CSS styles-->
+<style type="text/css">
+      html { 
+	      height: 100%;
+	  }
+      
+	  body {
+		  height: 100%; 
+		  margin: 0; 
+		  padding: 0;
+		 
+	  }
+      
+	  /*Adapt the following styling depending on where you want to put your map. If you want a 'full screen' map, then set the width and height to 100 percent and remove the margins.*/
+	  #festival-map { 
+	  	  height: 100%;
+		  width: 99.5%; 
+		  margin-left: auto;
+          margin-right: auto;
+		  border-right-width: 2px;
+		  border-right-color: #ffffff;
+		  border-right-style: solid;
+		  border-left-width: 2px;
+		  border-left-color: #ffffff;
+		  border-left-style: solid;
+	  }
+
+</style>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?v=2.exp&sensor=false"></script>
+<script>
+window.onload = function () {
+	var styles =[
+  {
+    "featureType": "road.local",
+    "elementType": "labels"  },{
+    "stylers": [
+      { "visibility": "on" },
+      { "invert_lightness": true }
+    ]
+  }
+];
+
+var options = {
+	mapTypeControlOptions: {
+		mapTypeIds: ['Styled']
+	},
+	center: new google.maps.LatLng(-7.245217594087794, 112.74455556869509),
+	zoom: 16,
+	disableDefaultUI: true,	
+	mapTypeId: 'Styled'
+};
+var div = document.getElementById('festival-map');
+var map = new google.maps.Map(div, options);
+var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
+map.mapTypes.set('Styled', styledMapType);
+}
+</script>
+
+
+</head>
+<body>  
+    <div id="festival-map"></div>   
+</body>
+</html>
